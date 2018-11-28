@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 
@@ -23,7 +24,10 @@ public class 抛出异常的方式定义资源 {
             try {
                 entry = SphU.entry("HelloWorld");
                 System.out.println("hello world");
-            } catch (BlockException e1) {
+            } catch (FlowException fe) {
+                System.out.println("Flow block");
+            }
+            catch (BlockException e1) {
                 // 资源访问阻止，被限流或者是降级
                 // 进行相应的处理操作
                 System.out.println("block!");
@@ -42,7 +46,10 @@ public class 抛出异常的方式定义资源 {
         FlowRule rule = new FlowRule();
         //定义资源
         rule.setResource("HelloWorld");
+        // 限流阈值类型，这个是QPS
         rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+        // 这个表示是线程数
+        rule.setGrade(RuleConstant.FLOW_GRADE_THREAD);
         // Set limit QPS to 20.
         rule.setCount(20);
         //添加规则
