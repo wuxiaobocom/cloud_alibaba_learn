@@ -46,6 +46,8 @@ public class 抛出异常的方式定义资源 {
         FlowRule rule = new FlowRule();
         //定义资源
         rule.setResource("HelloWorld");
+        // 通过这个方法进行流量控制
+        rule.setControlBehavior(RuleConstant.CONTROL_BEHAVIOR_DEFAULT);
         // 限流阈值类型，这个是QPS
         rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
         // 这个表示是线程数
