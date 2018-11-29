@@ -47,6 +47,13 @@
 			<artifactId>sentinel-core</artifactId>
 			<version>0.2.0</version>
 		</dependency>
+		<!--热点数据限流-->
+		<!-- https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-parameter-flow-control -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-parameter-flow-control</artifactId>
+			<version>0.2.0</version>
+		</dependency>
 
 	</dependencies>
 
